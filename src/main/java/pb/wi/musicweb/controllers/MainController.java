@@ -8,10 +8,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckMenuItem;
-import javafx.scene.control.Dialog;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import pb.wi.musicweb.dialogs.DialogUtils;
+import pb.wi.musicweb.utils.DialogUtils;
+import pb.wi.musicweb.utils.FxmlUtils;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -31,22 +31,13 @@ public class MainController {
     }
 
     public void setCenter(String fxmlPath) {
-        FXMLLoader loader = new FXMLLoader(this.getClass().getResource(fxmlPath));
-        ResourceBundle bundle = ResourceBundle.getBundle("bundles.messages");
-        loader.setResources(bundle);
-        Parent parent = null;
-        try {
-            parent = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        borderPane.setCenter(parent);
+        borderPane.setCenter(FxmlUtils.fxmlLoader(fxmlPath));
     }
 
     @FXML
     public void closeApplication(ActionEvent actionEvent) {
         Optional<ButtonType> result = DialogUtils.confirmationDialog();
-        if(result.get() == ButtonType.OK) {
+        if (result.get() == ButtonType.OK) {
             Platform.exit();
             System.exit(0);
         }
