@@ -5,15 +5,14 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.HBox?>
 
-
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pb.wi.musicweb.controllers.TopMenuButtonsController">
    <children>
-      <ToggleButton mnemonicParsing="false" onAction="#openBase" prefHeight="80.0" prefWidth="150.0" text="Baza Płyt">
+      <ToggleButton mnemonicParsing="false" onAction="#openBase" prefHeight="80.0" prefWidth="150.0" text="%base">
          <toggleGroup>
             <ToggleGroup fx:id="togglebuttons" />
          </toggleGroup>
       </ToggleButton>
-      <ToggleButton mnemonicParsing="false" onAction="#openMusicList" prefHeight="80.0" prefWidth="150.0" text="Lista Utworów" toggleGroup="$togglebuttons" />
+      <ToggleButton mnemonicParsing="false" onAction="#openMusicList" prefHeight="80.0" prefWidth="150.0" text="%music.list" toggleGroup="$togglebuttons" />
       <ToggleButton mnemonicParsing="false" prefHeight="80.0" prefWidth="150.0" text="ToggleButton" toggleGroup="$togglebuttons" />
    </children>
    <padding>
