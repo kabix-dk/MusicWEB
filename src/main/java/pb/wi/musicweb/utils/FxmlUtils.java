@@ -1,10 +1,8 @@
 package pb.wi.musicweb.utils;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
-import java.io.IOException;
 import java.util.ResourceBundle;
 
 public class FxmlUtils {
