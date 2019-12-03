@@ -4,10 +4,12 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.TreeItem;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import pb.wi.musicweb.database.dbutils.DataBaseSession;
 import pb.wi.musicweb.database.models.AlbumEntity;
+import pb.wi.musicweb.utils.converters.ConverterAlbum;
 
 import java.util.List;
 import java.util.Random;
@@ -19,17 +21,29 @@ public class AlbumModel {
 
     private ObservableList<AlbumFX> albumList = FXCollections.observableArrayList();
     private ObjectProperty<AlbumFX> album = new SimpleObjectProperty<>();
+    private TreeItem<String> root = new TreeItem<>();
 
     public void init() {
         DataBaseSession.startTransaction();
         session = DataBaseSession.getSession();
         Query q = session.createQuery("FROM AlbumEntity");
         List<AlbumEntity> albums = q.list();
+        initAlbumList(albums);
+        initRoot(albums);
+    }
+
+    private void initRoot(List<AlbumEntity> albums) {
+        this.root.getChildren().clear();
+        albums.forEach(c-> {
+            TreeItem<String> albumItem = new TreeItem<>(c.getNazwaAlbum());
+            root.getChildren().add(albumItem);
+        });
+    }
+
+    private void initAlbumList(List<AlbumEntity> albums) {
         this.albumList.clear();
         albums.forEach(c->{
-            AlbumFX albumFX = new AlbumFX();
-            albumFX.setId(c.getIdAlbum());
-            albumFX.setName(c.getNazwaAlbum());
+            AlbumFX albumFX = ConverterAlbum.convertAlbumFX(c);
             this.albumList.add(albumFX);
         });
     }
@@ -81,5 +95,13 @@ public class AlbumModel {
 
     public void setAlbum(AlbumFX album) {
         this.album.set(album);
+    }
+
+    public TreeItem<String> getRoot() {
+        return root;
+    }
+
+    public void setRoot(TreeItem<String> root) {
+        this.root = root;
     }
 }

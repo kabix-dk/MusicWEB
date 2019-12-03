@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TreeView;
 import pb.wi.musicweb.modelFX.AlbumFX;
 import pb.wi.musicweb.modelFX.AlbumModel;
 import pb.wi.musicweb.utils.DialogUtils;
@@ -21,6 +22,8 @@ public class AlbumController {
     private Button editAlbumButton;
     @FXML
     private ComboBox<AlbumFX> albumComboBox;
+    @FXML
+    private TreeView<String> albumTreeView;
 
     private AlbumModel albumModel;
 
@@ -29,6 +32,7 @@ public class AlbumController {
         this.albumModel = new AlbumModel();
         this.albumModel.init();
         this.albumComboBox.setItems(this.albumModel.getAlbumList());
+        this.albumTreeView.setRoot(this.albumModel.getRoot());
         initBindings();
     }
 

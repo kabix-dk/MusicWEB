@@ -24,7 +24,7 @@ public class AlbumEntity {
     }
 
     @Basic
-    @Column(name = "NAZWA_ALBUM")
+    @Column(name = "NAZWA_ALBUM", unique = true)
     public String getNazwaAlbum() {
         return nazwaAlbum;
     }
