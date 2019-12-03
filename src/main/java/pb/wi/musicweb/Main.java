@@ -6,39 +6,61 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.ServiceRegistryBuilder;
-import pb.wi.musicweb.database.models.Utwór;
+import pb.wi.musicweb.database.dbutils.DataBaseSession;
+import pb.wi.musicweb.database.models.AlbumEntity;
+import pb.wi.musicweb.database.models.UtworEntity;
 import pb.wi.musicweb.utils.FxmlUtils;
+
+import java.util.Date;
 
 public class Main extends Application{
 
     public static final String BORDER_PANE_MAIN_FXML = "/fxml/BorderPaneMain.fxml";
 
     public static void main(String[] args) {
-        Utwór utwór = new Utwór();
-        utwór.setID_Utwór(7);
-        utwór.setNazwa_Utwór("Trójkąt Warszawski");
 
-        Configuration con = new Configuration().configure().addAnnotatedClass(Utwór.class);
+//        UtworEntity song = new UtworEntity();
+//        song.setIdUtwor((short)3);
+//        song.setIdAlbum((short)5);
+//        song.setIdProducent((short)2);
+//        song.setIdWykonawca((short)7);
+//        song.setNazwaUtwor("Trójkąty");
 
-        ServiceRegistry reg = new ServiceRegistryBuilder().applySettings(con.getProperties()).buildServiceRegistry();
+//        SessionFactory sf = new Configuration().configure().buildSessionFactory();
+//        Session session = sf.openSession();
 
-        SessionFactory sf = con.buildSessionFactory(reg);
-        Session session = sf.openSession();
+//        AlbumEntity album = new AlbumEntity();
+//        album.setIdAlbum((short) 10);
+//        album.setNazwaAlbum("Nie ma mnie");
+//        album.setIdProducent((short) 2);
+//        album.setIdWykonawca((short) 3);
 
-        Transaction tx = session.beginTransaction();
+//        session.beginTransaction();
+//        session.save(album);
+//        session.getTransaction().commit();
+//        session.close();
 
-        utwór = (Utwór) session.get(Utwór.class, 7);
+//        System.out.println("SIEMA");
+//        System.out.println(album.toString());
 
-//        session.save(utwór);
-        tx.commit();
+//        Session session = DataBaseSession.getSession();
 
-        System.out.println(utwór);
+//        session.save(song);
+//        session.getTransaction().commit();
+//        session.close();
 
-//        launch(args);
+//        Configuration con = new Configuration().configure().addAnnotatedClass(UtworEntity.class);
+//        ServiceRegistry reg = new ServiceRegistryBuilder().applySettings(con.getProperties()).buildServiceRegistry();
+//        SessionFactory sf = con.buildSessionFactory(reg);
+//        Session session = sf.openSession();
+//        Transaction tx = session.beginTransaction();
+//        session.save(song);
+//        tx.commit();
+
+        DataBaseSession.initDataBase();
+        launch(args);
     }
 
     @Override
