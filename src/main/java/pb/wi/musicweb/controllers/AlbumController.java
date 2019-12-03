@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
 import pb.wi.musicweb.modelFX.AlbumFX;
 import pb.wi.musicweb.modelFX.AlbumModel;
+import pb.wi.musicweb.utils.DialogUtils;
 
 public class AlbumController {
 
@@ -14,6 +15,10 @@ public class AlbumController {
     private TextField albumTextField;
     @FXML
     private Button addAlbumButton;
+    @FXML
+    private Button deleteAlbumButton;
+    @FXML
+    private Button editAlbumButton;
     @FXML
     private ComboBox<AlbumFX> albumComboBox;
 
@@ -29,6 +34,8 @@ public class AlbumController {
 
     private void initBindings() {
         addAlbumButton.disableProperty().bind(albumTextField.textProperty().isEmpty());
+        deleteAlbumButton.disableProperty().bind(albumModel.albumProperty().isNull());
+        editAlbumButton.disableProperty().bind(albumModel.albumProperty().isNull());
     }
 
     public void addAlbum() {
@@ -42,5 +49,13 @@ public class AlbumController {
 
     public void onActionComboBox(ActionEvent actionEvent) {
         this.albumModel.setAlbum(this.albumComboBox.getSelectionModel().getSelectedItem());
+    }
+
+    public void onActionEditAlbum(ActionEvent actionEvent) {
+        String newAlbumName = DialogUtils.editDialog(albumModel.getAlbum().getName());
+        if(newAlbumName!=null) {
+            albumModel.getAlbum().setName(newAlbumName);
+            albumModel.updateAlbum();
+        }
     }
 }

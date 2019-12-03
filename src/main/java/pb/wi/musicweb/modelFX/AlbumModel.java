@@ -52,6 +52,17 @@ public class AlbumModel {
         init();
     }
 
+    public void updateAlbum() {
+        String id = String.valueOf(album.getValue().getId());
+        String name = getAlbum().getName();
+        Query q = session.createQuery("update AlbumEntity set nazwaAlbum = :name where idAlbum = :id");
+        q.setString("id", id);
+        q.setString("name", name);
+        q.executeUpdate();
+        DataBaseSession.endTransaction();
+        init();
+    }
+
     public ObservableList<AlbumFX> getAlbumList() {
         return albumList;
     }

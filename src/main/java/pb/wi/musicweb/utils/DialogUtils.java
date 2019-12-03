@@ -3,6 +3,7 @@ package pb.wi.musicweb.utils;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextInputDialog;
 
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -34,5 +35,17 @@ public class DialogUtils {
         TextArea textArea = new TextArea(error);
         errorAlert.getDialogPane().setContent(textArea);
         errorAlert.showAndWait();
+    }
+
+    public static String editDialog(String value) {
+        TextInputDialog dialog = new TextInputDialog(value);
+        dialog.setTitle(bundle.getString("edit.title"));
+        dialog.setHeaderText(bundle.getString("edit.header"));
+        dialog.setContentText(bundle.getString("edit.content"));
+        Optional<String> result = dialog.showAndWait();
+        if(result.isPresent()) {
+            return result.get();
+        }
+        return null;
     }
 }
