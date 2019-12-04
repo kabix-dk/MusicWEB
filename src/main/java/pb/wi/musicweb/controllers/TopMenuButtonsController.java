@@ -1,5 +1,6 @@
 package pb.wi.musicweb.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleGroup;
 
@@ -9,6 +10,7 @@ public class TopMenuButtonsController {
     public static final String SONG_LIST_FXML = "/fxml/SongList.fxml";
     public static final String ADD_SONG_FXML = "/fxml/AddSong.fxml";
     public static final String ADD_ALBUM_FXML = "/fxml/AddAlbum.fxml";
+    public static final String ADD_WYKONAWCA_FXML = "/fxml/AddWykonawca.fxml";
     private MainController mainController;
 
     @FXML
@@ -34,6 +36,12 @@ public class TopMenuButtonsController {
     public void addAlbum() {
         resetToggleButton();
         mainController.setCenter(ADD_ALBUM_FXML);
+    }
+
+    @FXML
+    public void addWykonawca() {
+        resetToggleButton();
+        mainController.setCenter(ADD_WYKONAWCA_FXML);
     }
 
     public void setMainController(MainController mainController) {

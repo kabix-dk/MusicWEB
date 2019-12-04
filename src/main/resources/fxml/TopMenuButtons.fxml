@@ -10,6 +10,15 @@
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pb.wi.musicweb.controllers.TopMenuButtonsController">
    <children>
+      <Button mnemonicParsing="false" onAction="#addWykonawca" prefHeight="80.0" prefWidth="150.0" text="%add.wykonawca">
+         <graphic>
+            <ImageView fitHeight="40.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/wykonawca.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
       <ToggleButton mnemonicParsing="false" onAction="#openBase" prefHeight="80.0" prefWidth="150.0" text="%base">
          <toggleGroup>
             <ToggleGroup fx:id="toggleButtons" />

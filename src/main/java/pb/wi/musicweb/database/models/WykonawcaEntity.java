@@ -42,7 +42,7 @@ public class WykonawcaEntity {
     }
 
     @Basic
-    @Column(name = "PSEUDONIM_WYKONAWCA")
+    @Column(name = "PSEUDONIM_WYKONAWCA", unique = true)
     public String getPseudonimWykonawca() {
         return pseudonimWykonawca;
     }
