@@ -4,16 +4,8 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.AnnotationConfiguration;
-import org.hibernate.cfg.Configuration;
 import pb.wi.musicweb.database.dbutils.DataBaseSession;
-import pb.wi.musicweb.database.models.AlbumEntity;
-import pb.wi.musicweb.database.models.UtworEntity;
 import pb.wi.musicweb.utils.FxmlUtils;
-
-import java.util.Date;
 
 public class Main extends Application{
 

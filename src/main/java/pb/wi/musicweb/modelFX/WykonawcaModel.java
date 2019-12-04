@@ -7,12 +7,9 @@ import pb.wi.musicweb.database.dbutils.DataBaseSession;
 import pb.wi.musicweb.database.models.WykonawcaEntity;
 import pb.wi.musicweb.utils.converters.ConverterWykonawca;
 
-import java.util.Random;
-
 public class WykonawcaModel {
 
     Session session;
-
 
     private ObjectProperty<WykonawcaFX> wykonawcaFXObjectProperty = new SimpleObjectProperty<>(new WykonawcaFX());
 

@@ -19,13 +19,21 @@
             </ImageView>
          </graphic>
       </Button>
+      <Button mnemonicParsing="false" onAction="#addProducent" prefHeight="80.0" prefWidth="150.0" text="%add.producent">
+         <graphic>
+            <ImageView fitHeight="40.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/producent.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
       <ToggleButton mnemonicParsing="false" onAction="#openBase" prefHeight="80.0" prefWidth="150.0" text="%base">
          <toggleGroup>
             <ToggleGroup fx:id="toggleButtons" />
          </toggleGroup>
       </ToggleButton>
       <ToggleButton mnemonicParsing="false" onAction="#openMusicList" prefHeight="80.0" prefWidth="150.0" text="%music.list" toggleGroup="$toggleButtons" />
-      <ToggleButton mnemonicParsing="false" prefHeight="80.0" prefWidth="150.0" text="ToggleButton" toggleGroup="$toggleButtons" />
       <Button graphicTextGap="8.0" mnemonicParsing="false" onAction="#addSong" prefHeight="80.0" prefWidth="150.0" text="%add_song">
          <graphic>
             <ImageView fitHeight="40.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">

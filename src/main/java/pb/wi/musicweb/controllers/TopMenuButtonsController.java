@@ -11,6 +11,7 @@ public class TopMenuButtonsController {
     public static final String ADD_SONG_FXML = "/fxml/AddSong.fxml";
     public static final String ADD_ALBUM_FXML = "/fxml/AddAlbum.fxml";
     public static final String ADD_WYKONAWCA_FXML = "/fxml/AddWykonawca.fxml";
+    public static final String ADD_PRODUCENT_FXML = "/fxml/AddProducent.fxml";
     private MainController mainController;
 
     @FXML
@@ -42,6 +43,11 @@ public class TopMenuButtonsController {
     public void addWykonawca() {
         resetToggleButton();
         mainController.setCenter(ADD_WYKONAWCA_FXML);
+    }
+
+    public void addProducent(ActionEvent actionEvent) {
+        resetToggleButton();
+        mainController.setCenter(ADD_PRODUCENT_FXML);
     }
 
     public void setMainController(MainController mainController) {
