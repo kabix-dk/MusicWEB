@@ -18,6 +18,11 @@ public class DataBaseSession {
         session.beginTransaction();
     }
 
+    public static void updateObject(Object o) {
+        Object mergedOne = session.merge(o);
+        session.update(mergedOne);
+    }
+
     public static void endTransaction() {
         session.getTransaction().commit();
     }

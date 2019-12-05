@@ -7,11 +7,13 @@ import java.util.Random;
 
 public class ConverterWykonawca {
 
-    private static Random generator = new Random();
+    private static Random random = new Random();
 
     public static WykonawcaEntity converToWykonawcaEntity(WykonawcaFX wykonawcaFX) {
         WykonawcaEntity wykonawcaEntity = new WykonawcaEntity();
-        wykonawcaEntity.setIdWykonawca((short) Math.abs(generator.nextInt(Short.MAX_VALUE)));
+        if(wykonawcaFX.getId() != 0) {
+            wykonawcaEntity.setIdWykonawca((short) wykonawcaFX.getId());
+        } else wykonawcaEntity.setIdWykonawca((short) random.nextInt(Short.MAX_VALUE-1));
         wykonawcaEntity.setImieWykonawca(wykonawcaFX.getName());
         wykonawcaEntity.setNazwiskoWykonawca(wykonawcaFX.getSurname());
         wykonawcaEntity.setPseudonimWykonawca(wykonawcaFX.getNick());

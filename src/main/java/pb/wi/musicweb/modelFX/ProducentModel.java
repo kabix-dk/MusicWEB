@@ -19,6 +19,8 @@ public class ProducentModel {
     private ObjectProperty<ProducentFX> producentFXObjectProperty = new SimpleObjectProperty<>(new ProducentFX());
     private ObservableList<ProducentFX> producentFXObservableList = FXCollections.observableArrayList();
 
+    private ObjectProperty<ProducentFX> producentFXObjectPropertyEdit = new SimpleObjectProperty<>(new ProducentFX());
+
     public void init() {
         DataBaseSession.startTransaction();
         session = DataBaseSession.getSession();
@@ -29,6 +31,14 @@ public class ProducentModel {
             ProducentFX producentFX = ConvertProducent.convertToProducentFX(producent);
             this.producentFXObservableList.add(producentFX);
         });
+    }
+
+    public void saveProducentEditInDataBase() {
+        ProducentEntity producentEntity = ConvertProducent.convertToProducentEntity(this.getProducentFXObjectPropertyEdit());
+
+        DataBaseSession.updateObject(producentEntity);
+        DataBaseSession.endTransaction();
+        init();
     }
 
     public void saveProducentInDataBase() {
@@ -57,5 +67,17 @@ public class ProducentModel {
 
     public void setProducentFXObservableList(ObservableList<ProducentFX> producentFXObservableList) {
         this.producentFXObservableList = producentFXObservableList;
+    }
+
+    public ProducentFX getProducentFXObjectPropertyEdit() {
+        return producentFXObjectPropertyEdit.get();
+    }
+
+    public ObjectProperty<ProducentFX> producentFXObjectPropertyEditProperty() {
+        return producentFXObjectPropertyEdit;
+    }
+
+    public void setProducentFXObjectPropertyEdit(ProducentFX producentFXObjectPropertyEdit) {
+        this.producentFXObjectPropertyEdit.set(producentFXObjectPropertyEdit);
     }
 }

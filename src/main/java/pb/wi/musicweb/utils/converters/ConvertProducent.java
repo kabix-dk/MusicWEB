@@ -7,11 +7,13 @@ import java.util.Random;
 
 public class ConvertProducent {
 
-    private static Random generator = new Random();
+    private static Random random = new Random();
 
     public static ProducentEntity convertToProducentEntity(ProducentFX producentFX) {
         ProducentEntity producentEntity = new ProducentEntity();
-        producentEntity.setIdProducent((short) Math.abs(generator.nextInt(Short.MAX_VALUE)));
+        if(producentFX.getId() != 0) {
+            producentEntity.setIdProducent((short) producentFX.getId());
+        } else producentEntity.setIdProducent((short) random.nextInt(Short.MAX_VALUE-1));
         producentEntity.setImieProducent(producentFX.getName());
         producentEntity.setNazwiskoProducent(producentFX.getSurname());
         producentEntity.setPseudonimProducent(producentFX.getNick());

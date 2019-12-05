@@ -19,6 +19,8 @@ public class WykonawcaModel {
     private ObjectProperty<WykonawcaFX> wykonawcaFXObjectProperty = new SimpleObjectProperty<>(new WykonawcaFX());
     private ObservableList<WykonawcaFX> wykonawcaFXObservableList = FXCollections.observableArrayList();
 
+    private ObjectProperty<WykonawcaFX> wykonawcaFXObjectPropertyEdit = new SimpleObjectProperty<>(new WykonawcaFX());
+
     public void init() {
         DataBaseSession.startTransaction();
         session = DataBaseSession.getSession();
@@ -29,6 +31,14 @@ public class WykonawcaModel {
             WykonawcaFX wykonawcaFX = ConverterWykonawca.convertToWykonawcaFX(wykonawca);
             this.wykonawcaFXObservableList.add(wykonawcaFX);
         });
+    }
+
+    public void saveWykonawcaEditInDataBase() {
+        WykonawcaEntity wykonawcaEntity = ConverterWykonawca.converToWykonawcaEntity(this.getWykonawcaFXObjectPropertyEdit());
+
+        DataBaseSession.updateObject(wykonawcaEntity);
+        DataBaseSession.endTransaction();
+        init();
     }
 
     public void saveWykonawcaInDataBase() {
@@ -57,5 +67,17 @@ public class WykonawcaModel {
 
     public void setWykonawcaFXObservableList(ObservableList<WykonawcaFX> wykonawcaFXObservableList) {
         this.wykonawcaFXObservableList = wykonawcaFXObservableList;
+    }
+
+    public WykonawcaFX getWykonawcaFXObjectPropertyEdit() {
+        return wykonawcaFXObjectPropertyEdit.get();
+    }
+
+    public ObjectProperty<WykonawcaFX> wykonawcaFXObjectPropertyEditProperty() {
+        return wykonawcaFXObjectPropertyEdit;
+    }
+
+    public void setWykonawcaFXObjectPropertyEdit(WykonawcaFX wykonawcaFXObjectPropertyEdit) {
+        this.wykonawcaFXObjectPropertyEdit.set(wykonawcaFXObjectPropertyEdit);
     }
 }

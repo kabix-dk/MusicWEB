@@ -25,11 +25,11 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </HBox>
-      <TableView fx:id="producentTableView" tableMenuButtonVisible="true">
+      <TableView fx:id="producentTableView" editable="true" tableMenuButtonVisible="true">
         <columns>
-          <TableColumn fx:id="nameColumn" minWidth="-1.0" prefWidth="75.0" text="%name.wykonawca" />
-          <TableColumn fx:id="surnameColumn" minWidth="-1.0" prefWidth="75.0" text="%surname.wykonawca" />
-            <TableColumn fx:id="nickColumn" minWidth="-1.0" prefWidth="75.0" text="%nick.wykonawca" />
+          <TableColumn fx:id="nameColumn" minWidth="-1.0" onEditCommit="#onEditCommitName" prefWidth="75.0" text="%name.wykonawca" />
+          <TableColumn fx:id="surnameColumn" minWidth="-1.0" onEditCommit="#onEditCommitSurname" prefWidth="75.0" text="%surname.wykonawca" />
+            <TableColumn fx:id="nickColumn" minWidth="-1.0" onEditCommit="#onEditCommitNick" prefWidth="75.0" text="%nick.wykonawca" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
