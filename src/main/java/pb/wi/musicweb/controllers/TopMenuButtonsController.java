@@ -66,6 +66,4 @@ public class TopMenuButtonsController {
             toggleButtons.getSelectedToggle().setSelected(false);
         }
     }
-
-
 }

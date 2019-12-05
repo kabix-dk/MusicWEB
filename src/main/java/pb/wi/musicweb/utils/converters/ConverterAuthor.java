@@ -1,9 +1,7 @@
 package pb.wi.musicweb.utils.converters;
 
 import pb.wi.musicweb.database.models.AutorTekstuEntity;
-import pb.wi.musicweb.database.models.WykonawcaEntity;
 import pb.wi.musicweb.modelFX.AuthorFX;
-import pb.wi.musicweb.modelFX.WykonawcaFX;
 
 import java.util.Random;
 

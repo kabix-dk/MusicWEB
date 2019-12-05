@@ -31,7 +31,7 @@ public class MainController {
     }
 
     @FXML
-    public void closeApplication(ActionEvent actionEvent) {
+    public void closeApplication() {
         Optional<ButtonType> result = DialogUtils.confirmationDialog();
         if (result.get() == ButtonType.OK) {
             Platform.exit();
@@ -40,12 +40,12 @@ public class MainController {
     }
 
     @FXML
-    public void setCaspian(ActionEvent actionEvent) {
+    public void setCaspian() {
         Application.setUserAgentStylesheet(Application.STYLESHEET_CASPIAN);
     }
 
     @FXML
-    public void setModena(ActionEvent actionEvent) {
+    public void setModena() {
         Application.setUserAgentStylesheet(Application.STYLESHEET_MODENA);
     }
 
@@ -57,7 +57,7 @@ public class MainController {
     }
 
     @FXML
-    public void about(ActionEvent actionEvent) {
+    public void about() {
         DialogUtils.dialogAboutApplication();
     }
 }

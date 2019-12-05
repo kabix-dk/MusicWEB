@@ -1,6 +1,5 @@
 package pb.wi.musicweb.controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -47,15 +46,15 @@ public class AlbumController {
         albumTextField.clear();
     }
 
-    public void onActionDeleteButton(ActionEvent actionEvent) {
+    public void onActionDeleteButton() {
         this.albumModel.deleteAlbumById();
     }
 
-    public void onActionComboBox(ActionEvent actionEvent) {
+    public void onActionComboBox() {
         this.albumModel.setAlbum(this.albumComboBox.getSelectionModel().getSelectedItem());
     }
 
-    public void onActionEditAlbum(ActionEvent actionEvent) {
+    public void onActionEditAlbum() {
         String newAlbumName = DialogUtils.editDialog(albumModel.getAlbum().getName());
         if(newAlbumName!=null) {
             albumModel.getAlbum().setName(newAlbumName);
