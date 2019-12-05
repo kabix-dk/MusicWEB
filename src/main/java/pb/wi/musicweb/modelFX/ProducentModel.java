@@ -8,7 +8,9 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import pb.wi.musicweb.database.dbutils.DataBaseSession;
 import pb.wi.musicweb.database.models.ProducentEntity;
+import pb.wi.musicweb.database.models.WykonawcaEntity;
 import pb.wi.musicweb.utils.converters.ConvertProducent;
+import pb.wi.musicweb.utils.converters.ConverterWykonawca;
 
 import java.util.List;
 
@@ -45,6 +47,14 @@ public class ProducentModel {
         ProducentEntity producentEntity = ConvertProducent.convertToProducentEntity(this.getProducentFXObjectProperty());
 
         DataBaseSession.saveObject(producentEntity);
+        DataBaseSession.endTransaction();
+        init();
+    }
+
+    public void deleteWykonawcaInDataBase() {
+        ProducentEntity producentEntity = ConvertProducent.convertToProducentEntity(this.getProducentFXObjectPropertyEdit());
+
+        DataBaseSession.deleteObject(producentEntity);
         DataBaseSession.endTransaction();
         init();
     }

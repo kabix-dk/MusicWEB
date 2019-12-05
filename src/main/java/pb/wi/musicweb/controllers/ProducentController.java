@@ -1,10 +1,7 @@
 package pb.wi.musicweb.controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import pb.wi.musicweb.modelFX.ProducentFX;
 import pb.wi.musicweb.modelFX.ProducentModel;
@@ -29,6 +26,9 @@ public class ProducentController {
     @FXML
     private TableColumn<ProducentFX, String> nickColumn;
 
+    @FXML
+    private MenuItem deleteMenuItem;
+
     private ProducentModel producentModel;
 
     public void initialize() {
@@ -51,6 +51,8 @@ public class ProducentController {
         this.producentTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             this.producentModel.setProducentFXObjectPropertyEdit(newValue);
         });
+
+        this.deleteMenuItem.disableProperty().bind( this.producentTableView.getSelectionModel().selectedItemProperty().isNull());
     }
 
     public void addProducentOnAction() {
@@ -73,5 +75,9 @@ public class ProducentController {
     public void onEditCommitNick(TableColumn.CellEditEvent<ProducentFX, String> producentFXStringCellEditEvent) {
         this.producentModel.getProducentFXObjectPropertyEdit().setNick(producentFXStringCellEditEvent.getNewValue());
         this.producentModel.saveProducentEditInDataBase();
+    }
+
+    public void deleteProducentOnAction() {
+        this.producentModel.deleteWykonawcaInDataBase();
     }
 }

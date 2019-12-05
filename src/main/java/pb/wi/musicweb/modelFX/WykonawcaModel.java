@@ -49,6 +49,14 @@ public class WykonawcaModel {
         init();
     }
 
+    public void deleteWykonawcaInDataBase() {
+        WykonawcaEntity wykonawcaEntity = ConverterWykonawca.converToWykonawcaEntity(this.getWykonawcaFXObjectPropertyEdit());
+
+        DataBaseSession.deleteObject(wykonawcaEntity);
+        DataBaseSession.endTransaction();
+        init();
+    }
+
     public WykonawcaFX getWykonawcaFXObjectProperty() {
         return wykonawcaFXObjectProperty.get();
     }

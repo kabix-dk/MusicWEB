@@ -23,6 +23,11 @@ public class DataBaseSession {
         session.update(mergedOne);
     }
 
+    public static void deleteObject(Object o) {
+        Object mergeOne = session.merge(o);
+        session.delete(mergeOne);
+    }
+
     public static void endTransaction() {
         session.getTransaction().commit();
     }

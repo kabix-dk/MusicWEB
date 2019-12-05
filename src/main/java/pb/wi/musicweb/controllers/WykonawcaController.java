@@ -1,10 +1,7 @@
 package pb.wi.musicweb.controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import pb.wi.musicweb.modelFX.WykonawcaFX;
 import pb.wi.musicweb.modelFX.WykonawcaModel;
@@ -29,6 +26,9 @@ public class WykonawcaController {
     @FXML
     private TableColumn<WykonawcaFX, String> nickColumn;
 
+    @FXML
+    private MenuItem deleteMenuItem;
+
     private WykonawcaModel wykonawcaModel;
 
     public void initialize() {
@@ -51,6 +51,8 @@ public class WykonawcaController {
         this.wykonawcaTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             this.wykonawcaModel.setWykonawcaFXObjectPropertyEdit(newValue);
         });
+
+        this.deleteMenuItem.disableProperty().bind( this.wykonawcaTableView.getSelectionModel().selectedItemProperty().isNull());
     }
 
     public void addWykonawcaOnAction() {
@@ -73,5 +75,9 @@ public class WykonawcaController {
     public void onEditCommitNick(TableColumn.CellEditEvent<WykonawcaFX, String> wykonawcaFXStringCellEditEvent) {
         this.wykonawcaModel.getWykonawcaFXObjectPropertyEdit().setNick(wykonawcaFXStringCellEditEvent.getNewValue());
         this.wykonawcaModel.saveWykonawcaEditInDataBase();
+    }
+
+    public void deleteWykonawcaOnAction() {
+        this.wykonawcaModel.deleteWykonawcaInDataBase();
     }
 }
