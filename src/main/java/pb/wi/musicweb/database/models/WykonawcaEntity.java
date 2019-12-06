@@ -13,6 +13,7 @@ public class WykonawcaEntity {
 
     @Id
     @Column(name = "ID_WYKONAWCA")
+    @GeneratedValue
     public short getIdWykonawca() {
         return idWykonawca;
     }

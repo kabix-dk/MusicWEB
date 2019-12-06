@@ -14,6 +14,7 @@ public class UtworEntity {
 
     @Id
     @Column(name = "ID_UTWOR")
+    @GeneratedValue
     public short getIdUtwor() {
         return idUtwor;
     }

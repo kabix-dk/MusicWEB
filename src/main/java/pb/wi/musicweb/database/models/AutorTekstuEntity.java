@@ -13,6 +13,7 @@ public class AutorTekstuEntity {
 
     @Id
     @Column(name = "ID_AUTOR_TEKSTU")
+    @GeneratedValue
     public short getIdAutorTekstu() {
         return idAutorTekstu;
     }

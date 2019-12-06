@@ -15,6 +15,7 @@ public class AlbumEntity {
 
     @Id
     @Column(name = "ID_ALBUM")
+    @GeneratedValue
     public short getIdAlbum() {
         return idAlbum;
     }

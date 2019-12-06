@@ -13,6 +13,7 @@ public class ProducentEntity {
 
     @Id
     @Column(name = "ID_PRODUCENT")
+    @GeneratedValue
     public short getIdProducent() {
         return idProducent;
     }
