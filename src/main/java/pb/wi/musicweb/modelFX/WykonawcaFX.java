@@ -59,4 +59,9 @@ public class WykonawcaFX {
     public void setNick(String nick) {
         this.nick.set(nick);
     }
+
+    @Override
+    public String toString() {
+        return getNick();
+    }
 }
