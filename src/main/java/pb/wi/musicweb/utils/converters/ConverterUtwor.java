@@ -10,4 +10,11 @@ public class ConverterUtwor {
         utworEntity.setNazwaUtwor(utworFX.getName());
         return utworEntity;
     }
+
+    public static UtworFX convertUtworFX(UtworEntity utworEntity) {
+        UtworFX utworFX = new UtworFX();
+        utworFX.setId(utworEntity.getIdUtwor());
+        utworFX.setName(utworEntity.getNazwaUtwor());
+        return utworFX;
+    }
 }

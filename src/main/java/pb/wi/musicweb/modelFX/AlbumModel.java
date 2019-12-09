@@ -9,8 +9,11 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import pb.wi.musicweb.database.dbutils.DataBaseSession;
 import pb.wi.musicweb.database.models.AlbumEntity;
+import pb.wi.musicweb.database.models.UtworEntity;
 import pb.wi.musicweb.utils.converters.ConverterAlbum;
+import pb.wi.musicweb.utils.converters.ConverterUtwor;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
@@ -20,7 +23,9 @@ public class AlbumModel {
     Random generator = new Random();
 
     private ObservableList<AlbumFX> albumList = FXCollections.observableArrayList();
+    private ObservableList<UtworFX> utworList = FXCollections.observableArrayList();
     private ObjectProperty<AlbumFX> album = new SimpleObjectProperty<>();
+    private ObjectProperty<UtworFX> utwor = new SimpleObjectProperty<>();
     private TreeItem<String> root = new TreeItem<>();
 
     public void init() {
@@ -30,6 +35,17 @@ public class AlbumModel {
         List<AlbumEntity> albums = q.list();
         initAlbumList(albums);
         initRoot(albums);
+        q = session.createQuery("FROM UtworEntity");
+        List<UtworEntity> utwory = q.list();
+        initUtworList(utwory);
+    }
+
+    private void initUtworList(List<UtworEntity> utwory) {
+        this.utworList.clear();
+        utwory.forEach(c-> {
+            UtworFX utworFX = ConverterUtwor.convertUtworFX(c);
+            this.utworList.add(utworFX);
+        });
     }
 
     private void initRoot(List<AlbumEntity> albums) {
@@ -62,6 +78,16 @@ public class AlbumModel {
         album.setIdAlbum((short) Math.abs(generator.nextInt(Short.MAX_VALUE)));
         album.setNazwaAlbum(name);
         DataBaseSession.saveObject(album);
+        DataBaseSession.endTransaction();
+        init();
+    }
+
+    public void addUtworToAlbum() {
+        short id_utwor = (short) getUtwor().getId();
+        short id_album = (short) getAlbum().getId();
+        UtworEntity utworEntity = (UtworEntity) session.get(UtworEntity.class, id_utwor);
+        AlbumEntity albumEntity = (AlbumEntity) session.get(AlbumEntity.class, id_album);
+        utworEntity.setAlbumByIdAlbum(albumEntity);
         DataBaseSession.endTransaction();
         init();
     }
@@ -103,5 +129,25 @@ public class AlbumModel {
 
     public void setRoot(TreeItem<String> root) {
         this.root = root;
+    }
+
+    public ObservableList<UtworFX> getUtworList() {
+        return utworList;
+    }
+
+    public void setUtworList(ObservableList<UtworFX> utworList) {
+        this.utworList = utworList;
+    }
+
+    public UtworFX getUtwor() {
+        return utwor.get();
+    }
+
+    public ObjectProperty<UtworFX> utworProperty() {
+        return utwor;
+    }
+
+    public void setUtwor(UtworFX utwor) {
+        this.utwor.set(utwor);
     }
 }

@@ -69,4 +69,9 @@ public class UtworFX {
     public void setAuthorFX(AuthorFX authorFX) {
         this.authorFX.set(authorFX);
     }
+
+    @Override
+    public String toString() {
+        return getName();
+    }
 }

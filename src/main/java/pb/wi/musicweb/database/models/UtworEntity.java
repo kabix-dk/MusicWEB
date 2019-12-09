@@ -87,15 +87,4 @@ public class UtworEntity {
     public void setAlbumByIdAlbum(AlbumEntity albumByIdAlbum) {
         this.albumByIdAlbum = albumByIdAlbum;
     }
-
-    @Override
-    public String toString() {
-        return "UtworEntity{" +
-                "idUtwor=" + idUtwor +
-                ", nazwaUtwor='" + nazwaUtwor + '\'' +
-                ", wykonawcaByIdWykonawca=" + wykonawcaByIdWykonawca +
-                ", producentByIdProducent=" + producentByIdProducent +
-                ", autorTekstuByIdAutorTekstu=" + autorTekstuByIdAutorTekstu +
-                '}';
-    }
 }

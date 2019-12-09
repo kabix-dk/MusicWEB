@@ -27,6 +27,9 @@
             <ComboBox fx:id="albumComboBox" onAction="#onActionComboBox" prefWidth="150.0" />
             <Button fx:id="editAlbumButton" mnemonicParsing="false" onAction="#onActionEditAlbum" text="%edit.button" />
             <Button fx:id="deleteAlbumButton" mnemonicParsing="false" onAction="#onActionDeleteButton" text="%delete.button" />
+            <Label text="%choose.utwor" />
+            <ComboBox fx:id="addUtworComboBox" onAction="#onActionUtworComboBox" prefWidth="150.0" />
+            <Button fx:id="add_utwor_button" mnemonicParsing="false" onAction="#addUtworOnAction" text="%add.button" />
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

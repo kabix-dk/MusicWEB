@@ -46,7 +46,7 @@ public class AlbumEntity {
         return Objects.hash(idAlbum, nazwaAlbum);
     }
 
-    @OneToMany(mappedBy = "albumByIdAlbum")
+    @OneToMany(mappedBy = "albumByIdAlbum", cascade = CascadeType.ALL, orphanRemoval = true)
     public Collection<UtworEntity> getUtworsByIdAlbum() {
         return utworsByIdAlbum;
     }
