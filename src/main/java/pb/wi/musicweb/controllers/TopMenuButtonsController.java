@@ -14,8 +14,8 @@ public class TopMenuButtonsController {
     public static final String ADD_AUTHOR_FXML = "/fxml/AddAuthor.fxml";
     private MainController mainController;
 
-    @FXML
-    private ToggleGroup toggleButtons;
+//    @FXML
+//    private ToggleGroup toggleButtons;
 
     @FXML
     public void openBase() {
@@ -29,31 +29,31 @@ public class TopMenuButtonsController {
 
     @FXML
     public void addSong() {
-        resetToggleButton();
+//        resetToggleButton();
         mainController.setCenter(ADD_SONG_FXML);
     }
 
     @FXML
     public void addAlbum() {
-        resetToggleButton();
+//        resetToggleButton();
         mainController.setCenter(ADD_ALBUM_FXML);
     }
 
     @FXML
     public void addWykonawca() {
-        resetToggleButton();
+//        resetToggleButton();
         mainController.setCenter(ADD_WYKONAWCA_FXML);
     }
 
     @FXML
     public void addProducent() {
-        resetToggleButton();
+//        resetToggleButton();
         mainController.setCenter(ADD_PRODUCENT_FXML);
     }
 
     @FXML
     public void addAuthor() {
-        resetToggleButton();
+//        resetToggleButton();
         mainController.setCenter(ADD_AUTHOR_FXML);
     }
 
@@ -61,9 +61,9 @@ public class TopMenuButtonsController {
         this.mainController = mainController;
     }
 
-    private void resetToggleButton() {
-        if (toggleButtons.getSelectedToggle() != null) {
-            toggleButtons.getSelectedToggle().setSelected(false);
-        }
-    }
+//    private void resetToggleButton() {
+//        if (toggleButtons.getSelectedToggle() != null) {
+//            toggleButtons.getSelectedToggle().setSelected(false);
+//        }
+//    }
 }
