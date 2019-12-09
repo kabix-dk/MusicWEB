@@ -1,6 +1,7 @@
 package pb.wi.musicweb.database.models;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -10,6 +11,7 @@ public class WykonawcaEntity {
     private String imieWykonawca;
     private String nazwiskoWykonawca;
     private String pseudonimWykonawca;
+    private Collection<UtworEntity> utworsByIdWykonawca;
 
     @Id
     @Column(name = "ID_WYKONAWCA")
@@ -43,7 +45,7 @@ public class WykonawcaEntity {
     }
 
     @Basic
-    @Column(name = "PSEUDONIM_WYKONAWCA", unique = true)
+    @Column(name = "PSEUDONIM_WYKONAWCA")
     public String getPseudonimWykonawca() {
         return pseudonimWykonawca;
     }
@@ -66,5 +68,24 @@ public class WykonawcaEntity {
     @Override
     public int hashCode() {
         return Objects.hash(idWykonawca, imieWykonawca, nazwiskoWykonawca, pseudonimWykonawca);
+    }
+
+    @OneToMany(mappedBy = "wykonawcaByIdWykonawca")
+    public Collection<UtworEntity> getUtworsByIdWykonawca() {
+        return utworsByIdWykonawca;
+    }
+
+    public void setUtworsByIdWykonawca(Collection<UtworEntity> utworsByIdWykonawca) {
+        this.utworsByIdWykonawca = utworsByIdWykonawca;
+    }
+
+    @Override
+    public String toString() {
+        return "WykonawcaEntity{" +
+                "idWykonawca=" + idWykonawca +
+                ", imieWykonawca='" + imieWykonawca + '\'' +
+                ", nazwiskoWykonawca='" + nazwiskoWykonawca + '\'' +
+                ", pseudonimWykonawca='" + pseudonimWykonawca + '\'' +
+                '}';
     }
 }

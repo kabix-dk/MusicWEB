@@ -41,6 +41,7 @@ public class UtworController {
     }
 
     public void addButtonOnAction() {
-
+        utworModel.saveUtworInDataBase();
+        this.nameTextField.clear();
     }
 }

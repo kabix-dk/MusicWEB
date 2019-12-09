@@ -8,9 +8,10 @@ import java.util.Objects;
 public class UtworEntity {
     private short idUtwor;
     private String nazwaUtwor;
-    private short idWykonawca;
-    private short idProducent;
-    private Short idAlbum;
+    private WykonawcaEntity wykonawcaByIdWykonawca;
+    private ProducentEntity producentByIdProducent;
+    private AutorTekstuEntity autorTekstuByIdAutorTekstu;
+    private AlbumEntity albumByIdAlbum;
 
     @Id
     @Column(name = "ID_UTWOR")
@@ -33,50 +34,68 @@ public class UtworEntity {
         this.nazwaUtwor = nazwaUtwor;
     }
 
-    @Basic
-    @Column(name = "ID_WYKONAWCA")
-    public short getIdWykonawca() {
-        return idWykonawca;
-    }
-
-    public void setIdWykonawca(short idWykonawca) {
-        this.idWykonawca = idWykonawca;
-    }
-
-    @Basic
-    @Column(name = "ID_PRODUCENT")
-    public short getIdProducent() {
-        return idProducent;
-    }
-
-    public void setIdProducent(short idProducent) {
-        this.idProducent = idProducent;
-    }
-
-    @Basic
-    @Column(name = "ID_ALBUM")
-    public Short getIdAlbum() {
-        return idAlbum;
-    }
-
-    public void setIdAlbum(Short idAlbum) {
-        this.idAlbum = idAlbum;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UtworEntity that = (UtworEntity) o;
         return idUtwor == that.idUtwor &&
-                idWykonawca == that.idWykonawca &&
-                idProducent == that.idProducent &&
-                Objects.equals(nazwaUtwor, that.nazwaUtwor) &&
-                Objects.equals(idAlbum, that.idAlbum);
+                Objects.equals(nazwaUtwor, that.nazwaUtwor);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idUtwor, nazwaUtwor, idWykonawca, idProducent, idAlbum);
+        return Objects.hash(idUtwor, nazwaUtwor);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "ID_WYKONAWCA", referencedColumnName = "ID_WYKONAWCA", nullable = false)
+    public WykonawcaEntity getWykonawcaByIdWykonawca() {
+        return wykonawcaByIdWykonawca;
+    }
+
+    public void setWykonawcaByIdWykonawca(WykonawcaEntity wykonawcaByIdWykonawca) {
+        this.wykonawcaByIdWykonawca = wykonawcaByIdWykonawca;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "ID_PRODUCENT", referencedColumnName = "ID_PRODUCENT", nullable = false)
+    public ProducentEntity getProducentByIdProducent() {
+        return producentByIdProducent;
+    }
+
+    public void setProducentByIdProducent(ProducentEntity producentByIdProducent) {
+        this.producentByIdProducent = producentByIdProducent;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "ID_AUTOR_TEKSTU", referencedColumnName = "ID_AUTOR_TEKSTU", nullable = false)
+    public AutorTekstuEntity getAutorTekstuByIdAutorTekstu() {
+        return autorTekstuByIdAutorTekstu;
+    }
+
+    public void setAutorTekstuByIdAutorTekstu(AutorTekstuEntity autorTekstuByIdAutorTekstu) {
+        this.autorTekstuByIdAutorTekstu = autorTekstuByIdAutorTekstu;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "ID_ALBUM", referencedColumnName = "ID_ALBUM")
+    public AlbumEntity getAlbumByIdAlbum() {
+        return albumByIdAlbum;
+    }
+
+    public void setAlbumByIdAlbum(AlbumEntity albumByIdAlbum) {
+        this.albumByIdAlbum = albumByIdAlbum;
+    }
+
+    @Override
+    public String toString() {
+        return "UtworEntity{" +
+                "idUtwor=" + idUtwor +
+                ", nazwaUtwor='" + nazwaUtwor + '\'' +
+                ", wykonawcaByIdWykonawca=" + wykonawcaByIdWykonawca +
+                ", producentByIdProducent=" + producentByIdProducent +
+                ", autorTekstuByIdAutorTekstu=" + autorTekstuByIdAutorTekstu +
+                '}';
     }
 }

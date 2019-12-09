@@ -9,9 +9,11 @@ import org.hibernate.Session;
 import pb.wi.musicweb.database.dbutils.DataBaseSession;
 import pb.wi.musicweb.database.models.AutorTekstuEntity;
 import pb.wi.musicweb.database.models.ProducentEntity;
+import pb.wi.musicweb.database.models.UtworEntity;
 import pb.wi.musicweb.database.models.WykonawcaEntity;
 import pb.wi.musicweb.utils.converters.ConvertProducent;
 import pb.wi.musicweb.utils.converters.ConverterAuthor;
+import pb.wi.musicweb.utils.converters.ConverterUtwor;
 import pb.wi.musicweb.utils.converters.ConverterWykonawca;
 
 import java.util.List;
@@ -63,6 +65,29 @@ public class UtworModel {
             WykonawcaFX wykonawcaFX = ConverterWykonawca.convertToWykonawcaFX(c);
             this.wykonawcaFXObservableList.add(wykonawcaFX);
         });
+    }
+
+    public void saveUtworInDataBase() {
+        UtworEntity utworEntity = ConverterUtwor.convertToUtwor(this.getUtworFXObjectProperty());
+        DataBaseSession.startTransaction();
+        session = DataBaseSession.getSession();
+
+        Short id_wykonawca = (short) this.getUtworFXObjectProperty().getWykonawcaFX().getId();
+        WykonawcaEntity wykonawcaEntity = (WykonawcaEntity) session.get(WykonawcaEntity.class, id_wykonawca);
+
+        Short id_producent = (short) this.getUtworFXObjectProperty().getProducentFX().getId();
+        ProducentEntity producentEntity = (ProducentEntity) session.get(ProducentEntity.class, id_producent);
+
+        Short id_autor_tekstu = (short) this.getUtworFXObjectProperty().getAuthorFX().getId();
+        AutorTekstuEntity autorTekstuEntity = (AutorTekstuEntity) session.get(AutorTekstuEntity.class, id_autor_tekstu);
+
+        utworEntity.setWykonawcaByIdWykonawca(wykonawcaEntity);
+        utworEntity.setProducentByIdProducent(producentEntity);
+        utworEntity.setAutorTekstuByIdAutorTekstu(autorTekstuEntity);
+        System.out.println(utworEntity);
+        DataBaseSession.saveObject(utworEntity);
+        DataBaseSession.endTransaction();
+        init();
     }
 
     public UtworFX getUtworFXObjectProperty() {

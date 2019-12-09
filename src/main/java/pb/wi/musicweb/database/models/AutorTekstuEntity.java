@@ -1,6 +1,7 @@
 package pb.wi.musicweb.database.models;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -10,6 +11,7 @@ public class AutorTekstuEntity {
     private String imieAutorTekstu;
     private String nazwiskoAutorTekstu;
     private String pseudonimAutorTekstu;
+    private Collection<UtworEntity> utworsByIdAutorTekstu;
 
     @Id
     @Column(name = "ID_AUTOR_TEKSTU")
@@ -66,5 +68,14 @@ public class AutorTekstuEntity {
     @Override
     public int hashCode() {
         return Objects.hash(idAutorTekstu, imieAutorTekstu, nazwiskoAutorTekstu, pseudonimAutorTekstu);
+    }
+
+    @OneToMany(mappedBy = "autorTekstuByIdAutorTekstu")
+    public Collection<UtworEntity> getUtworsByIdAutorTekstu() {
+        return utworsByIdAutorTekstu;
+    }
+
+    public void setUtworsByIdAutorTekstu(Collection<UtworEntity> utworsByIdAutorTekstu) {
+        this.utworsByIdAutorTekstu = utworsByIdAutorTekstu;
     }
 }

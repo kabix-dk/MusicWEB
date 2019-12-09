@@ -1,7 +1,7 @@
 package pb.wi.musicweb.database.models;
 
 import javax.persistence.*;
-import java.sql.Time;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -9,9 +9,7 @@ import java.util.Objects;
 public class AlbumEntity {
     private short idAlbum;
     private String nazwaAlbum;
-    private Time dataWydania;
-    private short idWykonawca;
-    private short idProducent;
+    private Collection<UtworEntity> utworsByIdAlbum;
 
     @Id
     @Column(name = "ID_ALBUM")
@@ -25,7 +23,7 @@ public class AlbumEntity {
     }
 
     @Basic
-    @Column(name = "NAZWA_ALBUM", unique = true)
+    @Column(name = "NAZWA_ALBUM")
     public String getNazwaAlbum() {
         return nazwaAlbum;
     }
@@ -34,61 +32,26 @@ public class AlbumEntity {
         this.nazwaAlbum = nazwaAlbum;
     }
 
-    @Basic
-    @Column(name = "DATA_WYDANIA")
-    public Time getDataWydania() {
-        return dataWydania;
-    }
-
-    public void setDataWydania(Time dataWydania) {
-        this.dataWydania = dataWydania;
-    }
-
-    @Basic
-    @Column(name = "ID_WYKONAWCA")
-    public short getIdWykonawca() {
-        return idWykonawca;
-    }
-
-    public void setIdWykonawca(short idWykonawca) {
-        this.idWykonawca = idWykonawca;
-    }
-
-    @Basic
-    @Column(name = "ID_PRODUCENT")
-    public short getIdProducent() {
-        return idProducent;
-    }
-
-    public void setIdProducent(short idProducent) {
-        this.idProducent = idProducent;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AlbumEntity that = (AlbumEntity) o;
         return idAlbum == that.idAlbum &&
-                idWykonawca == that.idWykonawca &&
-                idProducent == that.idProducent &&
-                Objects.equals(nazwaAlbum, that.nazwaAlbum) &&
-                Objects.equals(dataWydania, that.dataWydania);
+                Objects.equals(nazwaAlbum, that.nazwaAlbum);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idAlbum, nazwaAlbum, dataWydania, idWykonawca, idProducent);
+        return Objects.hash(idAlbum, nazwaAlbum);
     }
 
-    @Override
-    public String toString() {
-        return "AlbumEntity{" +
-                "idAlbum=" + idAlbum +
-                ", nazwaAlbum='" + nazwaAlbum + '\'' +
-                ", dataWydania=" + dataWydania +
-                ", idWykonawca=" + idWykonawca +
-                ", idProducent=" + idProducent +
-                '}';
+    @OneToMany(mappedBy = "albumByIdAlbum")
+    public Collection<UtworEntity> getUtworsByIdAlbum() {
+        return utworsByIdAlbum;
+    }
+
+    public void setUtworsByIdAlbum(Collection<UtworEntity> utworsByIdAlbum) {
+        this.utworsByIdAlbum = utworsByIdAlbum;
     }
 }
