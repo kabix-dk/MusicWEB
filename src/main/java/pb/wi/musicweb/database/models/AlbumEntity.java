@@ -1,5 +1,8 @@
 package pb.wi.musicweb.database.models;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
@@ -46,7 +49,7 @@ public class AlbumEntity {
         return Objects.hash(idAlbum, nazwaAlbum);
     }
 
-    @OneToMany(mappedBy = "albumByIdAlbum", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "albumByIdAlbum")
     public Collection<UtworEntity> getUtworsByIdAlbum() {
         return utworsByIdAlbum;
     }

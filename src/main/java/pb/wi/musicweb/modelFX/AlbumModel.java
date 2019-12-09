@@ -35,7 +35,7 @@ public class AlbumModel {
         List<AlbumEntity> albums = q.list();
         initAlbumList(albums);
         initRoot(albums);
-        q = session.createQuery("FROM UtworEntity");
+        q = session.createQuery("FROM UtworEntity WHERE ID_ALBUM = NULL");
         List<UtworEntity> utwory = q.list();
         initUtworList(utwory);
     }
@@ -52,6 +52,9 @@ public class AlbumModel {
         this.root.getChildren().clear();
         albums.forEach(c-> {
             TreeItem<String> albumItem = new TreeItem<>(c.getNazwaAlbum());
+            c.getUtworsByIdAlbum().forEach(b-> {
+                albumItem.getChildren().add(new TreeItem<>(b.getNazwaUtwor()));
+            });
             root.getChildren().add(albumItem);
         });
     }
