@@ -20,7 +20,7 @@ publicznie bazy oraz uczestniczyć w aktywnym życiu serwisu.
 
 ## Technologie
 * Java
-* Lanterna - 3.0.1
+* JavaFX 13
 * JPA Hibernate
 * Oracle DataBase
 
